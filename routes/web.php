@@ -61,6 +61,16 @@ Route::group(['prefix' => 'teacher', 'middleware' =>['ensureTeacher']], function
     Route::post('/question/d/{id}', [\App\Http\Controllers\questionController::class, 'delQuestion'])->name('delQuestion');
     Route::post('/question/{id}', [\App\Http\Controllers\questionController::class, 'saveQuestion'])->name('saveQuestion');
     Route::get('/question/{id}', [\App\Http\Controllers\questionController::class, 'editQuestion']);
+
+    //Tests routers
+    Route::get('/tests', [\App\Http\Controllers\testController::class, 'testList']);
+    Route::get('/addTest', function () {
+        return view('teacher.Tests.addTest');
+    });
+    Route::post('/addTest', [\App\Http\Controllers\testController::class, 'addTest'])->name('addTest');
+    Route::post('/test/d/{id}', [\App\Http\Controllers\testController::class, 'delTest'])->name('delTest');
+    Route::post('/test/{id}', [\App\Http\Controllers\testController::class, 'saveTest'])->name('saveTest');
+    Route::get('/test/{id}', [\App\Http\Controllers\testController::class, 'editTest']);
 });
 
 

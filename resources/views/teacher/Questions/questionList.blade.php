@@ -1,6 +1,6 @@
 @extends('userPanel')
 @section('userContent')
-    <h5 class="card-title">List of actions</h5>
+    <h5 class="card-title">List of questions</h5>
     <hr>
     <table class="table table-striped table-hover">
         <thead>
