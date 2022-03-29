@@ -74,14 +74,12 @@ Route::group(['prefix' => 'teacher', 'middleware' =>['ensureTeacher']], function
 
     //Classes routers
     Route::get('/classes', [\App\Http\Controllers\classController::class, 'classesList']);
-    Route::get('/addClass', function () {
-        return view('teacher.Classes.addClass');
+    Route::get('/addClass', function (){
+        $users = \App\Models\User::all();
+        return view('teacher.Classes.addClass', ['users' => $users]);
     });
     Route::post('/addClass', [\App\Http\Controllers\classController::class, 'addClass'])->name('addClass');
     Route::post('/class/d/{id}', [\App\Http\Controllers\classController::class, 'delClass'])->name('delClass');
     Route::post('/class/{id}', [\App\Http\Controllers\classController::class, 'saveClass'])->name('saveClass');
     Route::get('/class/{id}', [\App\Http\Controllers\classController::class, 'editClass']);
 });
-
-
-

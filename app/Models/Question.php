@@ -25,7 +25,7 @@ class Question extends Model
         'answ_4',
         'correct'
     ];
-//    public function tests(){
-//        return $this->belongsToMany(Test::class, 'test_exercises');
-//    }
+    public function tests(){
+        return $this->belongsToMany(Test::class, 'test_questions');
+    }
 }

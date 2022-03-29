@@ -45,4 +45,28 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
     ];
+
+
+    public function Classes(){
+        return $this->belongsToMany(Classes::class, 'students_classes');
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

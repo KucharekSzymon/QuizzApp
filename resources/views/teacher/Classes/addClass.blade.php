@@ -22,6 +22,16 @@
                 </div>
             </div>
 
+            <div class="row mb-3">
+                <select class="form-select" multiple name="users[]">
+                    @foreach($users as $user)
+                        @if($user['Role'] != 1)
+                        <option value="{{$user['id']}}">{{$user['name']}} {{$user['surrname']}}</option>
+                        @endif
+                    @endforeach
+                </select>
+            </div>
+
             <div class="row mb-0">
                 <div class="col-md-6 offset-md-4">
                     <button type="submit" class="btn btn-primary">

@@ -9,7 +9,7 @@
                 @yield('userContent')
             </div>
             <div class="card-footer text-muted">
-                v 1.10
+                v 1.40
             </div>
         </div>
     </div>

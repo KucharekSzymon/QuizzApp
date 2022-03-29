@@ -20,4 +20,8 @@ class Test extends Model
     protected $fillable = [
         'title',
         'threshold'
-    ];}
+    ];
+    public function questions(){
+        return $this->belongsToMany(Classes::class, 'test_questions');
+    }
+}
