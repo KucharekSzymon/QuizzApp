@@ -21,6 +21,15 @@
                     @enderror
                 </div>
             </div>
+            <div class="row mb-3">
+                <ul class="list-group text-center">
+                    @foreach($users as $user)
+                        @if($user['Role'] != 1)
+                            <a href="#" class="list-group-item list-group-item-action">{{$user['name']}} {{$user['surrname']}}</a>
+                        @endif
+                    @endforeach
+                </ul>
+            </div>
 
             <div class="row mb-0">
                 <div class="col-md-6 offset-md-4">

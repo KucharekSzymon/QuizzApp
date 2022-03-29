@@ -82,4 +82,21 @@ Route::group(['prefix' => 'teacher', 'middleware' =>['ensureTeacher']], function
     Route::post('/class/d/{id}', [\App\Http\Controllers\classController::class, 'delClass'])->name('delClass');
     Route::post('/class/{id}', [\App\Http\Controllers\classController::class, 'saveClass'])->name('saveClass');
     Route::get('/class/{id}', [\App\Http\Controllers\classController::class, 'editClass']);
+
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

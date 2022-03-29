@@ -15,11 +15,11 @@ class classController extends Controller
 
     public  function classesList(){
         $classes = Classes::all();
-        foreach($classes as $x){
+/*        foreach($classes as $x){
             $users = $x->users;
-        }
+        }*/
         //return $users;
-        return view('teacher/Classes/classesList',['classes' => $classes,'users'=>$users]);
+        return view('teacher/Classes/classesList',['classes' => $classes]);
     }
     public function addClass(Request $req){
         $class = new Classes();
@@ -36,12 +36,14 @@ class classController extends Controller
     }
     public function delClass(int $id){
         $e = Classes::find($id);
+        students_classes::find("classes_id", $id)->delete();
         $e->delete();
         return redirect('/teacher/classes');
     }
     public function editClass(int $id){
         $temp = Classes::find($id);
-        return view('teacher/Classes/editClass',['temp' => $temp]);
+        $users = $temp->users;
+;        return view('teacher/Classes/editClass',['temp' => $temp, 'users' => $users]);
     }
     public function saveClass(Request $req, int $id)
     {

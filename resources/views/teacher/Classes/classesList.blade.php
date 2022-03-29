@@ -2,12 +2,13 @@
 @section('userContent')
     <h5 class="card-title">List of classes</h5>
     <hr>
-    {{$users}}
     <table class="table table-striped table-hover">
         <thead>
         <th>ID</th>
         <th>Test title</th>
+<!--
         <th>Users</th>
+-->
         <th>Edit</th>
         <th>Remove</th>
         </thead>
@@ -19,7 +20,7 @@
                 <td>
                     {{$class['name']}}
                 </td>
-                <td>
+                {{--<td>
                     <select class="form-select">
                         @foreach($users as $user)
                             @if($user['pivot']['classes_id'] == $class['id'])
@@ -31,7 +32,7 @@
 
                     </select>
 
-                </td>
+                </td>--}}
                 <td>
                     <a href="/teacher/class/{{$class['id']}}">
                         <button class="btn btn-outline-info">Edit
