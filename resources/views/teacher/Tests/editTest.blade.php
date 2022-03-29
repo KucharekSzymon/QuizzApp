@@ -37,6 +37,18 @@
                 </div>
             </div>
 
+            <div class="row mb-3">
+                <ul class="list-group text-center">
+                    @foreach($questions as $question)
+                        <a href="#" class="list-group-item list-group-item-action">
+                            {{$question['question']}}
+                        </a>
+                    @endforeach
+                </ul>
+            </div>
+
+
+
             <div class="row mb-0">
                 <div class="col-md-6 offset-md-4">
                     <button type="submit" class="btn btn-primary">

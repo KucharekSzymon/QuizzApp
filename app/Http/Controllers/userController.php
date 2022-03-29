@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Classes;
 use App\Models\User;
+use App\Models\students_classes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,7 +37,8 @@ class userController extends Controller
     }
     public function editUser(int $id){
         $temp = User::find($id);
-        return view('teacher.Users.editUser',['temp' => $temp]);
+        $classes = Classes::all();
+        return view('teacher.Users.editUser',['temp' => $temp, 'classes'=>$classes]);
     }
     public function saveUser(Request $req, int $id){
         $save = User::find($id);
@@ -49,6 +52,12 @@ class userController extends Controller
         }
         else{
             $save->password = $req->input('password');
+        }
+        foreach ($req->input('classes') as $class) {
+            $mClass = new students_classes();
+            $mClass->user_id = $save->id;
+            $mClass->classes_id = $class;
+            $mClass->save();
         }
         $save->save();
         return redirect('teacher/users');

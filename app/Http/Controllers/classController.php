@@ -34,6 +34,14 @@ class classController extends Controller
         }
         return redirect('/teacher/classes');
     }
+/*    public function remfromClass(int $class_id, int $user_id){
+
+        foreach (students_classes::all() as $torm){
+            if($torm['user_id'] == $user_id)
+                 $rm.append($torm);
+        }
+
+    }*/
     public function delClass(int $id){
         $e = Classes::find($id);
         students_classes::find("classes_id", $id)->delete();

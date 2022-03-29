@@ -8,7 +8,7 @@
             @csrf
 
             <div class="row mb-3">
-                <label for="name" class="col-md-4 col-form-label text-md-end" val>Name</label>
+                <label for="name" class="col-md-4 col-form-label text-md-end">Name</label>
 
                 <div class="col-md-6">
                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $temp->name }}" required autocomplete="name" autofocus>
@@ -85,6 +85,21 @@
                     <select class="form-select" id="Role" name="Role">
                         <option @if($temp->Role == 0)selected @endif value="0">Student</option>
                         <option  @if($temp->Role == 1)selected @endif value="1">Teacher</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="Role"
+                       class="col-md-4 col-form-label text-md-end">Classes</label>
+
+                <div class="col-md-6">
+                    <select multiple class="form-select" name="classes[]">
+                        @if($temp['Role'] != 1)
+                            @foreach($classes as $class)
+                                <option value="{{$class['id']}}">{{$class['name']}}</option>
+                            @endforeach
+                        @endif
                     </select>
                 </div>
             </div>

@@ -25,7 +25,9 @@
                 <ul class="list-group text-center">
                     @foreach($users as $user)
                         @if($user['Role'] != 1)
-                            <a href="#" class="list-group-item list-group-item-action">{{$user['name']}} {{$user['surrname']}}</a>
+                            <a href="#" class="list-group-item list-group-item-action">
+                                {{$user['name']}} {{$user['surrname']}}
+                            </a>
                         @endif
                     @endforeach
                 </ul>

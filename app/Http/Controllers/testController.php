@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\test_questions;
 use Illuminate\Http\Request;
 use App\Models\Test;
 
@@ -20,6 +21,13 @@ class testController extends Controller
         $test->title = $req->input('title');
         $test->threshold = $req->input('threshold');
         $test->save();
+
+        foreach ($req->input('questions') as $question) {
+            $tQuestion = new test_questions();
+            $tQuestion->test_id = $test->id;
+            $tQuestion->question_id = $question;
+            $tQuestion->save();
+        }
         return redirect('/teacher/tests');
     }
     public function delTest(int $id){
@@ -29,7 +37,8 @@ class testController extends Controller
     }
     public function editTest(int $id){
         $temp = Test::find($id);
-        return view('teacher.Tests.editTest',['temp' => $temp]);
+        $questions = $temp->questions;
+        return view('teacher.Tests.editTest',['temp' => $temp,'questions'=>$questions]);
     }
     public function saveTest(Request $req, int $id)
     {

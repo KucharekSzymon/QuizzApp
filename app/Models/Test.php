@@ -22,6 +22,6 @@ class Test extends Model
         'threshold'
     ];
     public function questions(){
-        return $this->belongsToMany(Classes::class, 'test_questions');
+        return $this->belongsToMany(Question::class, 'test_questions');
     }
 }
