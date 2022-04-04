@@ -25,12 +25,13 @@ class classController extends Controller
         $class = new Classes();
         $class->name = $req->input('name');
         $class->save();
-
-        foreach ($req->input('users') as $user) {
-            $mUser = new students_classes();
-            $mUser->classes_id = $class->id;
-            $mUser->user_id = $user;
-            $mUser->save();
+        if($req->input('users') != null){
+            foreach ($req->input('users') as $user) {
+                $mUser = new students_classes();
+                $mUser->classes_id = $class->id;
+                $mUser->user_id = $user;
+                $mUser->save();
+            }
         }
         return redirect('/teacher/classes');
     }
@@ -44,7 +45,7 @@ class classController extends Controller
     }*/
     public function delClass(int $id){
         $e = Classes::find($id);
-        students_classes::find("classes_id", $id)->delete();
+        //students_classes::find($id->classes_id)->delete();
         $e->delete();
         return redirect('/teacher/classes');
     }

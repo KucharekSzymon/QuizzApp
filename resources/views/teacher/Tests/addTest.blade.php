@@ -45,6 +45,22 @@
                 </select>
             </div>
 
+            <div class="row mb-3">
+                <select class="form-select" multiple name="users[]">
+                    @foreach($users as $user)
+                        <option value="{{$user['id']}}">{{$user['name']}} {{$user['surrname']}}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="row mb-3">
+                <select class="form-select" multiple name="classes[]">
+                    @foreach($classes as $class)
+                        <option value="{{$class['id']}}">{{$class['name']}}</option>
+                    @endforeach
+                </select>
+            </div>
+
             <div class="row mb-0">
                 <div class="col-md-6 offset-md-4">
                     <button type="submit" class="btn btn-primary">

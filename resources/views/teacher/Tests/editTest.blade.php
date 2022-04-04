@@ -37,15 +37,26 @@
                 </div>
             </div>
 
-            <div class="row mb-3">
-                <ul class="list-group text-center">
-                    @foreach($questions as $question)
-                        <a href="#" class="list-group-item list-group-item-action">
-                            {{$question['question']}}
-                        </a>
-                    @endforeach
-                </ul>
-            </div>
+                <div class="row mb-3">
+                    <label class="col-md-4 col-form-label text-md-end">Questions in test</label>
+                    <ul class="list-group text-center">
+                        @foreach($questionsin as $questionin)
+                            <a href="#" class="list-group-item list-group-item-action">
+                                {{$questionin['question']}}
+                            </a>
+                        @endforeach
+                    </ul>
+                </div>
+
+                <div class="row-md-3">
+                    <label for="questions[]"
+                           class="col-md-4 col-form-label text-md-end">Add question</label>
+                    <select multiple class="form-select" name="questions[]">
+                        @foreach($questions as $question)
+                            <option value="{{$question['id']}}">{{$question['question']}}</option>
+                        @endforeach
+                    </select>
+                </div>
 
 
 

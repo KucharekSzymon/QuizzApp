@@ -66,7 +66,10 @@ Route::group(['prefix' => 'teacher', 'middleware' =>['ensureTeacher']], function
     Route::get('/tests', [\App\Http\Controllers\testController::class, 'testList']);
     Route::get('/addTest', function (){
         $questions = \App\Models\Question::all();
-        return view('teacher.Tests.addTest', ['questions' => $questions]);
+        $users = \App\Models\User::all();
+        $classes = \App\Models\Classes::all();
+
+        return view('teacher.Tests.addTest', ['questions' => $questions, 'users'=>$users, 'classes'=> $classes]);
     });
     Route::post('/addTest', [\App\Http\Controllers\testController::class, 'addTest'])->name('addTest');
     Route::post('/test/d/{id}', [\App\Http\Controllers\testController::class, 'delTest'])->name('delTest');

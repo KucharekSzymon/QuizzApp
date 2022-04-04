@@ -47,13 +47,15 @@ class questionController extends Controller
         $save->answ_3 = $req->input('answer3');
         $save->answ_4 = $req->input('answer4');
         $save->correct = $req->input('correct');
-        foreach ($req->input('tests') as $test) {
-            $qTest = new test_questions();
-            $qTest->question_id = $save->id;
-            $qTest->test_id = $test;
-            $qTest->save();
+        if($req->input('tests') != null) {
+            foreach ($req->input('tests') as $test) {
+                $qTest = new test_questions();
+                $qTest->question_id = $save->id;
+                $qTest->test_id = $test;
+                $qTest->save();
+            }
         }
-        $save->save();
+            $save->save();
         return redirect('teacher/questions');
     }
 }
