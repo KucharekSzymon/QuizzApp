@@ -51,13 +51,23 @@ class classController extends Controller
     }
     public function editClass(int $id){
         $temp = Classes::find($id);
-        $users = $temp->users;
-;        return view('teacher/Classes/editClass',['temp' => $temp, 'users' => $users]);
+        $users = User::all()->diff($temp->users)->where('Role' ,'=','0');
+        $usersin =  User::all() -> diff(User::all()->diff($temp->users));
+        return view('teacher/Classes/editClass',['temp' => $temp, 'users' => $users, 'usersin'=>$usersin]);
     }
     public function saveClass(Request $req, int $id)
     {
         $save = Classes::find($id);
         $save->name = $req->input('name');
+
+        if($req->input('users') != null) {
+            foreach ($req->input('users') as $user) {
+                $temp = new students_classes();
+                $temp->classes_id = $save->id;
+                $temp->user_id = $user;
+                $temp->save();
+            }
+        }
 
         $save->save();
         return redirect('teacher/classes');

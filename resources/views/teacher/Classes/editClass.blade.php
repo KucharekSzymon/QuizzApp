@@ -22,16 +22,26 @@
                 </div>
             </div>
             <div class="row mb-3">
+                <label class="col-md-4 col-form-label text-md-end">Users in test</label>
                 <ul class="list-group text-center">
-                    @foreach($users as $user)
-                        @if($user['Role'] != 1)
-                            <a href="#" class="list-group-item list-group-item-action">
-                                {{$user['name']}} {{$user['surrname']}}
-                            </a>
-                        @endif
+                    @foreach($usersin as $userin)
+                        <a href="#" class="list-group-item list-group-item-action">
+                            {{$userin['name']}} {{$userin['surrname']}}
+                        </a>
                     @endforeach
                 </ul>
             </div>
+            @if(!$users->isEmpty())
+                <div class="row-md-3">
+                    <label for="users[]"
+                           class="col-md-4 col-form-label text-md-end">Add user</label>
+                    <select multiple class="form-select" name="users[]">
+                        @foreach($users as $user)
+                            <option value="{{$user['id']}}">{{$user['name']}} {{$user['surrname']}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            @endif
 
             <div class="row mb-0">
                 <div class="col-md-6 offset-md-4">
