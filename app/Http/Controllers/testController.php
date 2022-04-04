@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Classes;
 use App\Models\Question;
 use App\Models\tests_classes;
 use App\Models\test_questions;
 use App\Models\tests_students;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Test;
 
@@ -58,10 +60,17 @@ class testController extends Controller
     }
     public function editTest(int $id){
         $temp = Test::find($id);
+
         $questions = Question::all()->diff($temp->questions);
         $questionsin =  Question::all() -> diff($questions);
 
-        return view('teacher.Tests.editTest',['temp' => $temp,'questions'=>$questions, 'questionsin'=>$questionsin]);
+        $users = User::all()->diff($temp->users)->where('Role' ,'=','0');
+        $usersin =  User::all() -> diff(User::all()->diff($temp->users));
+
+        $classes = Classes::all()->diff($temp->classes);
+        $classesin =  Classes::all() -> diff($users);
+
+        return view('teacher.Tests.editTest',['temp' => $temp,'questions'=>$questions, 'questionsin'=>$questionsin, 'users'=>$users, 'usersin'=>$usersin, 'classes'=>$classes, 'classesin'=>$classesin  ]);
     }
     public function saveTest(Request $req, int $id)
     {
@@ -73,6 +82,22 @@ class testController extends Controller
                 $temp = new test_questions();
                 $temp->test_id = $save->id;
                 $temp->question_id = $question;
+                $temp->save();
+            }
+        }
+        if($req->input('users') != null) {
+            foreach ($req->input('users') as $user) {
+                $temp = new tests_students();
+                $temp->test_id = $save->id;
+                $temp->user_id = $user;
+                $temp->save();
+            }
+        }
+        if($req->input('classes') != null) {
+            foreach ($req->input('classes') as $class) {
+                $temp = new tests_classes();
+                $temp->test_id = $save->id;
+                $temp->classes_id = $class;
                 $temp->save();
             }
         }

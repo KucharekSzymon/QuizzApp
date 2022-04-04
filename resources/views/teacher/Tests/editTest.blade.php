@@ -36,7 +36,6 @@
                     @enderror
                 </div>
             </div>
-
                 <div class="row mb-3">
                     <label class="col-md-4 col-form-label text-md-end">Questions in test</label>
                     <ul class="list-group text-center">
@@ -47,7 +46,27 @@
                         @endforeach
                     </ul>
                 </div>
-
+            <div class="row mb-3">
+                <label class="col-md-4 col-form-label text-md-end">Users in test</label>
+                <ul class="list-group text-center">
+                    @foreach($usersin as $userin)
+                        <a href="#" class="list-group-item list-group-item-action">
+                            {{$userin['name']}} {{$userin['surrname']}}
+                        </a>
+                    @endforeach
+                </ul>
+            </div>
+            <div class="row mb-3">
+                <label class="col-md-4 col-form-label text-md-end">Classes in test</label>
+                <ul class="list-group text-center">
+                    @foreach($classesin as $classin)
+                        <a href="#" class="list-group-item list-group-item-action">
+                            {{$classin['name']}}
+                        </a>
+                    @endforeach
+                </ul>
+            </div>
+            @if(!$questions->isEmpty())
                 <div class="row-md-3">
                     <label for="questions[]"
                            class="col-md-4 col-form-label text-md-end">Add question</label>
@@ -57,6 +76,30 @@
                         @endforeach
                     </select>
                 </div>
+            @endif
+            @if(!$users->isEmpty())
+            <div class="row-md-3">
+                <label for="users[]"
+                       class="col-md-4 col-form-label text-md-end">Add user</label>
+                <select multiple class="form-select" name="users[]">
+                    @foreach($users as $user)
+                        <option value="{{$user['id']}}">{{$user['name']}} {{$user['surrname']}}</option>
+                    @endforeach
+                </select>
+            </div>
+            @endif
+            @if(!$classes->isEmpty())
+            <div class="row-md-3">
+                <label for="classes[]"
+                       class="col-md-4 col-form-label text-md-end">Add class</label>
+                <select multiple class="form-select" name="classes[]">
+                    @foreach($classes as $class)
+                        <option value="{{$class['id']}}">{{$class['name']}}</option>
+                    @endforeach
+                </select>
+            </div>
+            @endif
+
 
 
 
